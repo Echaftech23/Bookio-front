@@ -1,4 +1,3 @@
-// src/pages/auth/Register.jsx
 import { useAuth } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -10,19 +9,20 @@ function Register() {
   useEffect(() => {
     if (auth.isAuthenticated) {
       navigate("/dashboard");
+    } else {
+      auth.signinRedirect();
     }
-  }, [auth.isAuthenticated, navigate]);
+  }, [auth.isAuthenticated, navigate, auth]);
 
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <button
-        onClick={() => auth.signinRedirect()}
-        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-      >
-        Register with Cognito
-      </button>
-    </div>
-  );
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (auth.error) {
+    return <div>Error: {auth.error.message}</div>;
+  }
+
+  return null;
 }
 
 export default Register;

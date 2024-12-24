@@ -9,11 +9,12 @@ function Login() {
   useEffect(() => {
     if (auth.isAuthenticated) {
       navigate("/dashboard");
+    } else {
+      auth.signinRedirect();
     }
 
-    console.log('is auth',auth.isAuthenticated);
-    
-  }, [auth.isAuthenticated, navigate]);
+    console.log('is auth', auth.isAuthenticated);
+  }, [auth.isAuthenticated, navigate, auth]);
 
   if (auth.isLoading) {
     return <div>Loading...</div>;
@@ -23,18 +24,7 @@ function Login() {
     return <div>Error: {auth.error.message}</div>;
   }
 
-  console.log('is auth',auth.isAuthenticated);
-
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <button
-        onClick={() => auth.signinRedirect()}
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Sign in with Cognito
-      </button>
-    </div>
-  );
+  return null;
 }
 
 export default Login;
