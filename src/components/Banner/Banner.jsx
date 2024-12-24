@@ -1,4 +1,3 @@
-import React from "react";
 // import BooksStack from "../../assets/website/books-stack.png";
 import BooksStack from "../../assets/website/library.jpg";
 import Vector from "../../assets/vector3.png";
@@ -17,8 +16,8 @@ const Banner = () => {
   };
   return (
     <>
-      <div className="min-h-[550px]">
-        <div className="min-h-[550px] flex justify-center items-center backdrop-blur-xl py-12 sm:py-0 ">
+      <div className="px-4 sm:px-0 min-h-[550px]">
+        <div className="min-h-[550px] flex justify-center items-center backdrop-blur-xl py-12 sm:py-0">
           <div data-aos="slide-up" className="container">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
               {/* Image section */}

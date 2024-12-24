@@ -35,7 +35,7 @@ const DropdownLinks = [
 const Header = () => {
   return (
     <>
-      <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200">
+      <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 px-4 sm:px-20">
         <div className="container py-3 sm:py-0">
           <div className="flex justify-between items-center">
             <div>
@@ -87,12 +87,13 @@ const Header = () => {
                 </li>
               </ul>
 
-              <Link
-                to="/login"
-                className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3"
-              >
-                Order
-                <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
+              <Link to="/login">
+                <button
+                  className="bg-gradient-to-r from-sky-500 to-slate-600 hover:scale-105 duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3"
+                >
+                  Order
+                  <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
+                </button>
               </Link>
             </div>
           </div>

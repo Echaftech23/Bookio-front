@@ -1,4 +1,3 @@
-import React from "react";
 import Book1 from "../../assets/books/book1.jpg";
 import Book2 from "../../assets/books/book2.jpg";
 import Book3 from "../../assets/books/book3.jpg";
@@ -45,7 +44,7 @@ const booksData = [
 const Books = () => {
   return (
     <>
-      <div className="mt-14 mb-12">
+      <div className="px-4 sm:px-20 mt-14 mb-12">
         <div className="container">
           {/* header */}
           <div className="text-center mb-10 max-w-[600px] mx-auto">

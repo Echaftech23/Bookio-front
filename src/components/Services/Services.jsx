@@ -32,7 +32,7 @@ const Services = ({ handleOrderPopup }) => {
   return (
     <>
       <span id="services"></span>
-      <div className="py-10">
+      <div className="px-4 sm:px-20 py-10">
         <div className="container">
           <div className="text-center mb-20 max-w-[400px] mx-auto">
             <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary ">
