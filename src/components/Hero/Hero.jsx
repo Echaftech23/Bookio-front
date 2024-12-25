@@ -47,7 +47,7 @@ const Hero = ({ handleOrderPopup }) => {
   return (
     <>
       <div
-        className="min-h-[550px] px-4 sm:px-20 sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200"
+        className="min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200"
         style={bgImage}
       >
         <div className="container pb-8 sm:pb-0">

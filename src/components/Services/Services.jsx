@@ -1,38 +1,32 @@
-import React from "react";
+import { useEffect, useState } from 'react';
 import Img1 from "../../assets/books/book2.jpg";
 import Img2 from "../../assets/books/book1.jpg";
 import Img3 from "../../assets/books/book3.jpg";
 import { FaStar } from "react-icons/fa";
+import { fetchBooks } from '../../services/booksService';
 
-const ServicesData = [
-  {
-    id: 1,
-    img: Img1,
-    title: "His Life",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    id: 2,
-    img: Img2,
-    title: "Who's there",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    id: 3,
-    img: Img3,
-    title: "Lost Boy",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-];
+const staticImages = [Img1, Img2, Img3];
 
 const Services = ({ handleOrderPopup }) => {
+  const [servicesData, setServicesData] = useState([]);
+
+  useEffect(() => {
+    const getBooks = async () => {
+      try {
+        const data = await fetchBooks(1, 3);
+        setServicesData(data);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    };
+
+    getBooks();
+  }, []);
+
   return (
     <>
       <span id="services"></span>
-      <div className="px-4 sm:px-20 py-10">
+      <div className="py-10">
         <div className="container">
           <div className="text-center mb-20 max-w-[400px] mx-auto">
             <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary ">
@@ -45,14 +39,15 @@ const Services = ({ handleOrderPopup }) => {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 md:gap-5 place-items-center">
-            {ServicesData.map((service) => (
+            {servicesData.map((service, index) => (
               <div
+                key={service._id}
                 data-aos="zoom-in"
                 className="rounded-2xl bg-white dark:bg-gray-800 hover:bg-primary dark:hover:bg-primary hover:text-white relative shadow-xl duration-high group max-w-[300px]"
               >
                 <div className="h-[100px]">
                   <img
-                    src={service.img}
+                    src={staticImages[index % staticImages.length]}
                     alt=""
                     className="max-w-[100px] block mx-auto transform -translate-y-14
                   group-hover:scale-105  duration-300 shadow-md"

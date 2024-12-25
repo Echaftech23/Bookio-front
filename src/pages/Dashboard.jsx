@@ -1,6 +1,7 @@
 import { useAuth, AuthService } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import BookLoader from "../components/Loader/BookLoader";
 
 function Dashboard() {
   const auth = useAuth();
@@ -12,8 +13,8 @@ function Dashboard() {
     }
   }, [auth.isAuthenticated, navigate]);
 
-  if (auth.isLoading) {
-    return <div>Loading...</div>;
+  if (auth.isLoading){
+    return <BookLoader />;
   }
 
   return (

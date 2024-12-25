@@ -1,6 +1,7 @@
-import { useAuth } from "../../services/AuthService";
+import { useAuth } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import BookLoader from "../../components/Loader/BookLoader";
 
 function Register() {
   const auth = useAuth();
@@ -15,7 +16,7 @@ function Register() {
   }, [auth.isAuthenticated, navigate, auth]);
 
   if (auth.isLoading) {
-    return <div>Loading...</div>;
+    return <BookLoader />;
   }
 
   if (auth.error) {
