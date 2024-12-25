@@ -1,8 +1,8 @@
-import apiClient from '../config/axios';
+import axiosInstance from '../config/axios';
 
 const fetchBooks = async (page = 1, limit = 3) => {
   try {
-    const response = await apiClient.get('/books', {
+    const response = await axiosInstance.get('/books', {
       params: { page, limit },
     });
     return response.data;
