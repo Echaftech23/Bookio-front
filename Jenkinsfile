@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        nodejs 'NodeJS 20'
+        nodejs 'nodejs'
     }
     stages {
         stage('Build') {
@@ -11,7 +11,9 @@ pipeline {
             }
         }
         stage('Deploy') {
-            sh "aws s3 sync dist/ s3://bookio-react-app --delete"
+            steps {
+                sh "aws s3 sync dist/ s3://bookio-react-app --delete"
+            }
         }
     }
 }
