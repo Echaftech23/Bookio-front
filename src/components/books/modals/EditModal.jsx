@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +10,7 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50">
       <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-xl shadow-xl">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-xl font-semibold">Edit Book Details</h2>
           <Button
             variant="ghost"
@@ -102,7 +101,7 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                   <Field
                     name="description"
                     as={Textarea}
-                    className={`min-h-24 ${
+                    className={`min-h-20 ${
                       errors.description && touched.description 
                         ? 'border-red-500 focus-visible:ring-red-500' 
                         : 'focus-visible:ring-blue-500'
@@ -113,7 +112,7 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-4 pt-4 border-t">
+              <div className="flex justify-end gap-4 ">
                 <Button
                   type="button"
                   variant="outline"
