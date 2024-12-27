@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                not { failure() }
+                success()
             }
             steps {
                 sh "aws s3 sync dist/ s3://bookio-react-app --delete"
