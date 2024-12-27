@@ -1,12 +1,14 @@
-import { MainLayout } from '../../components/layout//dashoard/MainLayout';
+import { MainLayout } from '../../components/layout/dashoard/MainLayout';
 import { DashboardHeader } from '../../components/Dashboard/header';
+import BooksGrid from '../../components/books/BooksGrid';
 
-const dashboard = () => {
+const Books = () => {
   return (
     <MainLayout>
-      <DashboardHeader title="Dashboard" subtitle="Welcome back to your dashboard" />
+      <DashboardHeader title="Books" subtitle="Your Books List Here" />
+      <BooksGrid />
     </MainLayout>
-  )
-}
+  );
+};
 
-export default dashboard
+export default Books;

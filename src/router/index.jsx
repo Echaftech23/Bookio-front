@@ -1,12 +1,13 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import MainLayout from '../components/layout/MainLayout';
+import { MainLayout } from '../components/layout/MainLayout';
 import BookLoader from '../components/Loader/BookLoader';
 
 const Login = lazy(() => import('../pages/auth/Login'));
 const Register = lazy(() => import('../pages/auth/Register'));
-const Dashboard = lazy(() => import('../pages/books/index'));
+const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Home = lazy(() => import('../pages/Home'));
+const Books = lazy(() => import('../pages/books/'));
 
 function AppRouter() {
   return (
@@ -21,6 +22,8 @@ function AppRouter() {
         </Route>
 
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="books" element={<Books />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </Suspense>
   );
