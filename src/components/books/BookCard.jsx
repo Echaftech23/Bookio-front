@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock, BookOpen, Pencil, Trash2 } from "lucide-react";
+import { Calendar, BookOpen, Pencil, Trash2 } from "lucide-react";
 import { formatDate } from "@/helpers/dateHelpers";
 import { deleteBook, updateBook } from "@/services/booksService";
 import { Button } from "@/components/ui/button";
