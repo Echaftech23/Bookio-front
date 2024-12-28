@@ -3,8 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { X } from 'lucide-react';
+import { useState } from "react";
 
 const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
+  const [file, setFile] = useState(null);
   if (!isOpen) return null;
 
   return (
@@ -25,7 +27,7 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
         <Formik
           initialValues={{ ...book }}
           onSubmit={(values) => {
-            onBookEdited(values);
+            onBookEdited({ ...values, image: file });
             onClose();
           }}
         >
@@ -75,6 +77,21 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                     }`}
                   />
                   <ErrorMessage name="publishedDate" component="p" className="mt-1 text-sm text-red-500" />
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Book Image</label>
+                  <input
+                    name="image"
+                    type="file"
+                    onChange={(event) => setFile(event.currentTarget.files[0])}
+                    className={`${
+                      errors.image && touched.image 
+                        ? 'border-red-500 focus-visible:ring-red-500' 
+                        : 'focus-visible:ring-blue-500'
+                    }`}
+                  />
+                  <ErrorMessage name="image" component="p" className="mt-1 text-sm text-red-500" /> 
                 </div>
 
                 <div>

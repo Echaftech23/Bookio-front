@@ -1,4 +1,3 @@
-// src/services/AuthService.js
 import { AuthProvider, useAuth } from "react-oidc-context";
 
 class AuthService {

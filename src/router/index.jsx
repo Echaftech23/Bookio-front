@@ -5,9 +5,9 @@ import BookLoader from '../components/Loader/BookLoader';
 
 const Login = lazy(() => import('../pages/auth/Login'));
 const Register = lazy(() => import('../pages/auth/Register'));
-const Dashboard = lazy(() => import('../pages/Dashboard'));
-const Home = lazy(() => import('../pages/Home'));
-const Books = lazy(() => import('../pages/books/'));
+const Dashboard = lazy(() => import('../pages/backOffice'));
+const Home = lazy(() => import('../pages/frontOffice'));
+const Books = lazy(() => import('../pages/backOffice/books'));
 
 function AppRouter() {
   return (

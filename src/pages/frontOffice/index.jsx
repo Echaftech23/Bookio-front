@@ -1,10 +1,10 @@
-import Hero from "../components/Hero/Hero";
-import Services from "../components/Services/Services.jsx";
-import Banner from "../components/Banner/Banner.jsx";
-import AppStore from "../components/AppStore/AppStore.jsx";
+import Hero from "../../components/Hero/Hero";
+import Services from "../../components/Services/Services.jsx";
+import Banner from "../../components/Banner/Banner.jsx";
+import AppStore from "../../components/AppStore/AppStore.jsx";
 // import PdfReader from "../components/PdfReader/PdfReader.jsx";
-import Testimonial from "../components/Testimonial/Testimonial.jsx";
-import Books from "../components/BooksSlider/Books.jsx";
+import Testimonial from "../../components/Testimonial/Testimonial.jsx";
+import Books from "../../components/BooksSlider/Books.jsx";
 import { useState } from "react";
 
 
