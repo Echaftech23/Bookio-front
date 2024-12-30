@@ -1,4 +1,4 @@
-import { useAuth } from "../../services/authService";
+import { useAuth } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import BookLoader from "../../components/Loader/BookLoader";

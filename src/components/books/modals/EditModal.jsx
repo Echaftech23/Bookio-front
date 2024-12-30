@@ -63,22 +63,7 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                   />
                   <ErrorMessage name="author" component="p" className="mt-1 text-sm text-red-500" />
                 </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Publication Date</label>
-                  <Field
-                    name="publishedDate"
-                    type="date"
-                    as={Input}
-                    className={`${
-                      errors.publishedDate && touched.publishedDate 
-                        ? 'border-red-500 focus-visible:ring-red-500' 
-                        : 'focus-visible:ring-blue-500'
-                    }`}
-                  />
-                  <ErrorMessage name="publishedDate" component="p" className="mt-1 text-sm text-red-500" />
-                </div>
-
+                
                 <div>
                   <label className="text-sm font-medium mb-2 block">Book Image</label>
                   <input
@@ -94,23 +79,40 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                   <ErrorMessage name="image" component="p" className="mt-1 text-sm text-red-500" /> 
                 </div>
 
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Status</label>
-                  <Field
-                    name="status"
-                    as="select"
-                    className={`w-full rounded-md border px-3 py-2 ${
-                      errors.status && touched.status 
-                        ? 'border-red-500 focus-visible:ring-red-500' 
-                        : 'border-gray-200 focus-visible:ring-blue-500'
-                    }`}
-                  >
-                    <option value="">Select status</option>
-                    <option value="available">Available</option>
-                    <option value="borrowed">Borrowed</option>
-                    <option value="reserved">Reserved</option>
-                  </Field>
-                  <ErrorMessage name="status" component="p" className="mt-1 text-sm text-red-500" />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Publication Date</label>
+                    <Field
+                      name="publishedDate"
+                      type="date"
+                      as={Input}
+                      className={`${
+                        errors.publishedDate && touched.publishedDate 
+                          ? 'border-red-500 focus-visible:ring-red-500' 
+                          : 'focus-visible:ring-blue-500'
+                      }`}
+                    />
+                    <ErrorMessage name="publishedDate" component="p" className="mt-1 text-sm text-red-500" />
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Status</label>
+                    <Field
+                      name="status"
+                      as="select"
+                      className={`w-full rounded-md border px-3 py-2 ${
+                        errors.status && touched.status 
+                          ? 'border-red-500 focus-visible:ring-red-500' 
+                          : 'border-gray-200 focus-visible:ring-blue-500'
+                      }`}
+                    >
+                      <option value="">Select status</option>
+                      <option value="available">Available</option>
+                      <option value="borrowed">Borrowed</option>
+                      <option value="reserved">Reserved</option>
+                    </Field>
+                    <ErrorMessage name="status" component="p" className="mt-1 text-sm text-red-500" />
+                  </div>
                 </div>
 
                 <div>

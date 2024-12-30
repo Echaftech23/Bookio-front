@@ -6,6 +6,7 @@ const createBookSchema = Yup.object({
   publishedDate: Yup.date().required('Published Date is required'),
   status: Yup.string().required('Status is required'),
   description: Yup.string().required('Description is required'),
+  image: Yup.string().required('Image is required'),
 });
 
 export default createBookSchema;

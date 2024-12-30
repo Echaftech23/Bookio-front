@@ -24,7 +24,10 @@ const fetchBookById = async (id) => {
 
 const createBook = async (bookData) => {
   try {
-    const response = await axiosInstance.post('/books', bookData);
+    const response = await axiosInstance.post('/books',
+      bookData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
     return response.data;
   } catch (error) {
     console.error('Error creating book:', error);
