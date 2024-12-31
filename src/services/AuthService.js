@@ -5,7 +5,7 @@ class AuthService {
     return {
       authority: `https://cognito-idp.eu-north-1.amazonaws.com/${import.meta.env.VITE_USER_POOL_ID}`,
       client_id: import.meta.env.VITE_CLIENT_ID,
-      redirect_uri: "http://localhost:5173/",
+      redirect_uri: import.meta.env.VITE_REDIRECT_URI,
       response_type: "code",
       scope: "email openid phone",
     };
@@ -13,7 +13,7 @@ class AuthService {
 
   static signOut() {
     const clientId = import.meta.env.VITE_CLIENT_ID;
-    const logoutUri = "http://localhost:5173/login";
+    const logoutUri = import.meta.env.VITE_LOGOUT_URI;
     const cognitoDomain = import.meta.env.VITE_COGNITO_DOMAIN;
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   }
