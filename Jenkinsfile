@@ -4,6 +4,13 @@ pipeline {
         nodejs 'nodejs-20.17.0'
     }
     stages {
+        stage('Setup Environment') {
+            steps {
+                withCredentials([file(credentialsId: 'env-production', variable: 'ENV_FILE')]) {
+                    sh 'cp $ENV_FILE .env'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 sh 'npm install'
@@ -16,6 +23,9 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            sh 'rm -f .env'
+        }
+    }
 }
-
-
