@@ -8,10 +8,14 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!auth.isAuthenticated && !auth.isLoading) {
-      auth.signinRedirect();
-    } else if (auth.isAuthenticated) {
+    if (auth.isLoading) {
+      return;
+    }
+
+    if (auth.isAuthenticated) {
       navigate("/dashboard");
+    } else {
+      auth.signinRedirect();
     }
 
     console.log('is auth', auth.isAuthenticated);
