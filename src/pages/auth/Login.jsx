@@ -8,15 +8,14 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (auth.isAuthenticated) {
-    //   navigate("/dashboard");
-    // } else {
-    //   auth.signinRedirect();
-    // }
-    auth.signinRedirect();
+    if (!auth.isAuthenticated && !auth.isLoading) {
+      auth.signinRedirect();
+    } else if (auth.isAuthenticated) {
+      navigate("/dashboard");
+    }
 
     console.log('is auth', auth.isAuthenticated);
-  }, [auth.isAuthenticated, navigate, auth]);
+  }, [auth.isAuthenticated, auth.isLoading, navigate, auth]);
 
   if (auth.isLoading) {
     return <BookLoader />;
