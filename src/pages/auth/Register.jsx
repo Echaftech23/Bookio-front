@@ -8,12 +8,16 @@ function Register() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (auth.isLoading) {
+      return;
+    }
+
     if (auth.isAuthenticated) {
       navigate("/dashboard");
     } else {
       auth.signinRedirect();
     }
-  }, [auth.isAuthenticated, navigate, auth]);
+  }, [auth.isAuthenticated, auth.isLoading, navigate, auth]);
 
   if (auth.isLoading) {
     return <BookLoader />;

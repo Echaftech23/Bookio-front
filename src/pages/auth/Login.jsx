@@ -17,7 +17,7 @@ function Login() {
     } else {
       auth.signinRedirect();
     }
-
+    
     console.log('is auth', auth.isAuthenticated);
   }, [auth.isAuthenticated, auth.isLoading, navigate, auth]);
 
