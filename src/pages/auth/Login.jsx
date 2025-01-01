@@ -8,11 +8,12 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (auth.isAuthenticated) {
-      navigate("/dashboard");
-    } else {
-      auth.signinRedirect();
-    }
+    // if (auth.isAuthenticated) {
+    //   navigate("/dashboard");
+    // } else {
+    //   auth.signinRedirect();
+    // }
+    auth.signinRedirect();
 
     console.log('is auth', auth.isAuthenticated);
   }, [auth.isAuthenticated, navigate, auth]);

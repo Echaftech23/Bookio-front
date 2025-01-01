@@ -23,9 +23,9 @@ pipeline {
             }
         }
     }
-    // post {
-    //     always {
-    //         sh 'rm -f .env'
-    //     }
-    // }
+    post {
+        always {
+            sh 'rm -f .env'
+        }
+    }
 }
