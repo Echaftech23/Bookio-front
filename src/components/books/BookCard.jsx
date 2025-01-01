@@ -39,8 +39,8 @@ export function BookCard({ book, onDelete, onEdit }) {
 
   const handleEdit = async (updatedBook) => {
     try {
-      await updateBook(book._id, updatedBook);
-      onEdit(updatedBook);
+      const editedBook = await updateBook(book._id, updatedBook);
+      onEdit(editedBook);
       setEditModalOpen(false);
       toast.success("Book updated successfully");
     } catch (error) {

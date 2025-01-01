@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
   const [file, setFile] = useState(null);
+
   if (!isOpen) return null;
 
   return (
@@ -27,7 +28,14 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
         <Formik
           initialValues={{ ...book }}
           onSubmit={(values) => {
-            onBookEdited({ ...values, image: file });
+            const formData = new FormData();
+            Object.keys(values).forEach((key) => {
+              formData.append(key, values[key]);
+            });
+            if (file) {
+              formData.append('file', file);
+            }
+            onBookEdited(formData);
             onClose();
           }}
         >
@@ -40,8 +48,8 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                     name="title"
                     as={Input}
                     className={`${
-                      errors.title && touched.title 
-                        ? 'border-red-500 focus-visible:ring-red-500' 
+                      errors.title && touched.title
+                        ? 'border-red-500 focus-visible:ring-red-500'
                         : 'focus-visible:ring-blue-500'
                     }`}
                     placeholder="Enter book title"
@@ -55,28 +63,23 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                     name="author"
                     as={Input}
                     className={`${
-                      errors.author && touched.author 
-                        ? 'border-red-500 focus-visible:ring-red-500' 
+                      errors.author && touched.author
+                        ? 'border-red-500 focus-visible:ring-red-500'
                         : 'focus-visible:ring-blue-500'
                     }`}
                     placeholder="Enter author name"
                   />
                   <ErrorMessage name="author" component="p" className="mt-1 text-sm text-red-500" />
                 </div>
-                
+
                 <div>
                   <label className="text-sm font-medium mb-2 block">Book Image</label>
                   <input
                     name="image"
                     type="file"
                     onChange={(event) => setFile(event.currentTarget.files[0])}
-                    className={`${
-                      errors.image && touched.image 
-                        ? 'border-red-500 focus-visible:ring-red-500' 
-                        : 'focus-visible:ring-blue-500'
-                    }`}
+                    className="block w-full text-sm border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                   />
-                  <ErrorMessage name="image" component="p" className="mt-1 text-sm text-red-500" /> 
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -87,12 +90,16 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                       type="date"
                       as={Input}
                       className={`${
-                        errors.publishedDate && touched.publishedDate 
-                          ? 'border-red-500 focus-visible:ring-red-500' 
+                        errors.publishedDate && touched.publishedDate
+                          ? 'border-red-500 focus-visible:ring-red-500'
                           : 'focus-visible:ring-blue-500'
                       }`}
                     />
-                    <ErrorMessage name="publishedDate" component="p" className="mt-1 text-sm text-red-500" />
+                    <ErrorMessage
+                      name="publishedDate"
+                      component="p"
+                      className="mt-1 text-sm text-red-500"
+                    />
                   </div>
 
                   <div>
@@ -101,8 +108,8 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                       name="status"
                       as="select"
                       className={`w-full rounded-md border px-3 py-2 ${
-                        errors.status && touched.status 
-                          ? 'border-red-500 focus-visible:ring-red-500' 
+                        errors.status && touched.status
+                          ? 'border-red-500 focus-visible:ring-red-500'
                           : 'border-gray-200 focus-visible:ring-blue-500'
                       }`}
                     >
@@ -121,28 +128,25 @@ const EditModal = ({ isOpen, onClose, book, onBookEdited }) => {
                     name="description"
                     as={Textarea}
                     className={`min-h-20 ${
-                      errors.description && touched.description 
-                        ? 'border-red-500 focus-visible:ring-red-500' 
+                      errors.description && touched.description
+                        ? 'border-red-500 focus-visible:ring-red-500'
                         : 'focus-visible:ring-blue-500'
                     }`}
                     placeholder="Enter book description"
                   />
-                  <ErrorMessage name="description" component="p" className="mt-1 text-sm text-red-500" />
+                  <ErrorMessage
+                    name="description"
+                    component="p"
+                    className="mt-1 text-sm text-red-500"
+                  />
                 </div>
               </div>
 
-              <div className="flex justify-end gap-4 ">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={onClose}
-                >
+              <div className="flex justify-end gap-4">
+                <Button type="button" variant="outline" onClick={onClose}>
                   Cancel
                 </Button>
-                <Button
-                  type="submit"
-                  className="bg-blue-600 hover:bg-blue-700"
-                >
+                <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
                   Save Changes
                 </Button>
               </div>

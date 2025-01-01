@@ -5,7 +5,12 @@ const fetchBooks = async (page = 1, limit = 3) => {
     const response = await axiosInstance.get('/books', {
       params: { page, limit },
     });
-    return response.data;
+    const totalBooks = response.data.totalBooks;
+    const totalPages = Math.ceil(totalBooks / limit);
+    return {
+      data: response.data.books,
+      totalPages,
+    };
   } catch (error) {
     console.error('Error fetching books:', error);
     throw error;
@@ -37,7 +42,10 @@ const createBook = async (bookData) => {
 
 const updateBook = async (id, bookData) => {
   try {
-    const response = await axiosInstance.patch(`/books/${id}`, bookData);
+    const response = await axiosInstance.patch(`/books/${id}`, 
+      bookData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
     return response.data;
   } catch (error) {
     console.error('Error updating book:', error);
