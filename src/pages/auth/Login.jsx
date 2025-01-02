@@ -1,25 +1,12 @@
 import { useAuth } from "../../services/AuthService";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import BookLoader from "../../components/Loader/BookLoader";
 
 function Login() {
   const auth = useAuth();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (auth.isLoading) {
-      return;
-    }
-
-    if (auth.isAuthenticated) {
-      navigate("/dashboard");
-    } else {
-      auth.signinRedirect();
-    }
-    
-    console.log('is auth', auth.isAuthenticated);
-  }, [auth.isAuthenticated, auth.isLoading, navigate, auth]);
+  if (!auth.isAuthenticated) {
+    auth.signinRedirect();
+  }
 
   if (auth.isLoading) {
     return <BookLoader />;
