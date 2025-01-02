@@ -4,7 +4,7 @@ import { DashboardHeader } from '../../../components/Dashboard/header';
 import CreateModal from '../../../components/books/modals/CreateModal';
 import { fetchBooks, createBook } from '@/services/booksService';
 import BooksGrid from '../../../components/books/BooksGrid';
-import Pagination from '@/components/ui/Pagination';
+import Pagination from '@/components/ui/pagination';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
