@@ -1,27 +1,31 @@
 import { useEffect, useState } from 'react';
-import Book1 from "../../assets/books/book1.jpg";
-import Book2 from "../../assets/books/book2.jpg";
-import Book3 from "../../assets/books/book3.jpg";
-import { FaStar } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 import { fetchBooks } from '../../services/booksService';
+import Pagination from '@/components/ui/Pagination';
 
-const staticImages = [Book1, Book2, Book3];
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const getBooks = async () => {
       try {
-        const data = await fetchBooks(1, 5);
+        const { data, totalPages } = await fetchBooks(currentPage, 5);
         setBooks(data);
+        setTotalPages(totalPages);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
     };
 
     getBooks();
-  }, []);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -43,28 +47,30 @@ const Books = () => {
           <div>
             <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-5">
               {/* Card */}
-              {books.map(({ _id, title, rating, author }, index) => (
-                <div key={_id} className="div space-y-3">
+              {books.map((book) => (
+                <Link to={`/books/${book._id}`} key={book._id} className="div space-y-3">
                   <img
-                    src={staticImages[index % staticImages.length]}
+                    src={book.image}
                     alt=""
                     className="h-[220px] w-[150px] object-cover rounded-md "
                   />
                   <div>
-                    <h3 className="font-semibold">{title}</h3>
-                    <p className="text-sm text-gray-700">{author}</p>
-                    <div className="flex items-center gap-1">
+                    <h3 className="font-semibold">{book.title}</h3>
+                    <p className="text-sm text-gray-700">{book.author}</p>
+                    {/* <div className="flex items-center gap-1">
                       <FaStar className="text-yellow-500" />
                       <span>{rating}</span>
-                    </div>
+                    </div> */}
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
-            <div className="flex justify-center">
-              <button className="text-center mt-10 cursor-pointer bg-primary text-white py-1 px-5 rounded-md">
-                View All Books
-              </button>
+            <div className="flex justify-center mt-10">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </div>
         </div>

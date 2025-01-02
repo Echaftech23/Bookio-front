@@ -13,7 +13,7 @@ const Services = ({ handleOrderPopup }) => {
   useEffect(() => {
     const getBooks = async () => {
       try {
-        const data = await fetchBooks(1, 3);
+        const { data } = await fetchBooks(1, 3);
         setServicesData(data);
       } catch (error) {
         console.error('Error fetching books:', error);

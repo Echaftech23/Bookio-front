@@ -8,6 +8,7 @@ const Register = lazy(() => import('../pages/auth/Register'));
 const Dashboard = lazy(() => import('../pages/backOffice'));
 const Home = lazy(() => import('../pages/frontOffice'));
 const Books = lazy(() => import('../pages/backOffice/books'));
+const BookDetails = lazy(() => import('../pages/frontOffice/BookDetails'));
 
 function AppRouter() {
   return (
@@ -17,6 +18,7 @@ function AppRouter() {
 
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+          <Route path="/books/:id" element={<BookDetails />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
