@@ -4,9 +4,7 @@ import BookLoader from "../../components/Loader/BookLoader";
 function Login() {
   const auth = useAuth();
 
-  if (!auth.isAuthenticated) {
-    auth.signinRedirect();
-  }
+  auth.signinRedirect();
 
   if (auth.isLoading) {
     return <BookLoader />;
