@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchBooks } from '../../services/booksService';
-import Pagination from '@/components/ui/Pagination';
+import Pagination from '@/components/ui/pagination';
 
 
 const Books = () => {
